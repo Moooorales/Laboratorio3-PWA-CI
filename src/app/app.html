@@ -1,0 +1,96 @@
+<div class="container mt-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+      <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+          <h3>{{ titulo }}</h3>
+
+          <p class="mb-0">
+            Programación Integrativa de Componentes Web
+          </p>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="alert"
+               [class.alert-success]="conectado"
+               [class.alert-danger]="!conectado">
+
+            Estado de conexión:
+
+            <strong>
+
+              {{ conectado ? '🟢 En línea' : '🔴 Sin conexión' }}
+
+            </strong>
+
+          </div>
+
+          <div class="input-group mb-3">
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingrese una nueva tarea"
+              [(ngModel)]="nuevaTarea">
+
+            <button
+              class="btn btn-success"
+              (click)="agregarTarea()">
+
+              Agregar
+
+            </button>
+
+          </div>
+
+          <ul class="list-group">
+
+            @for (tarea of tareas; track $index) {
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+
+              <span
+                (click)="cambiarEstado(tarea)"
+                [class.text-decoration-line-through]="tarea.completada"
+                style="cursor:pointer">
+
+                {{ tarea.nombre }}
+
+              </span>
+
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="eliminarTarea($index)">
+
+                Eliminar
+
+              </button>
+
+            </li>
+
+            }
+
+          </ul>
+
+        </div>
+
+        <div class="card-footer text-center">
+
+          Laboratorio PWA - Angular + Bootstrap
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
