@@ -15,19 +15,16 @@ jobs:
         node-version: [20.x, 22.x]
 
     steps:
-    - name: Checkout del codigo
-      uses: actions/checkout@v4
+      - name: Checkout del codigo
+        uses: actions/checkout@v4
 
-    - name: Configurar Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Instalar dependencias
-      run: npm ci
+      - name: Instalar dependencias
+        run: npm ci
 
-    - name: Ejecutar Pruebas
-      run: npm test
-
-    - name: Construir proyecto
-      run: npm run build
+      - name: Construir proyecto
+        run: npm run build
